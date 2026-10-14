@@ -1,6 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id);
-const STREAM='331a36f5-2459-45ea-9d95-6142f0c4b307',SECURE='169b52a0-b7fd-40da-998c-dd9238327e55';\nconst CMD='a9da6040-0823-4995-94ec-9ce41ca28833',DATA='a73e9a10-628f-4494-a099-12efaf72258f',STATUS='75a9f022-af03-4e41-b4bc-9de90a47d50b',PAIR='12e868e7-c926-4906-96c8-a7ee81d4b1b3';
+const STREAM='331a36f5-2459-45ea-9d95-6142f0c4b307',SECURE='169b52a0-b7fd-40da-998c-dd9238327e55';
+const CMD='a9da6040-0823-4995-94ec-9ce41ca28833',DATA='a73e9a10-628f-4494-a099-12efaf72258f',STATUS='75a9f022-af03-4e41-b4bc-9de90a47d50b',PAIR='12e868e7-c926-4906-96c8-a7ee81d4b1b3';
 const PIDS={rpm:['010C',b=>((b[0]*256+b[1])/4).toFixed(0),'rpm'],speed:['010D',b=>b[0],'km/h'],coolant:['0105',b=>b[0]-40,'°C'],intake:['010F',b=>b[0]-40,'°C'],load:['0104',b=>(b[0]*100/255).toFixed(1),'%'],throttle:['0111',b=>(b[0]*100/255).toFixed(1),'%'],voltage:['0142',b=>((b[0]*256+b[1])/1000).toFixed(2),'V']};
 let device=null,server=null,cmd=null,data=null,connected=false,working=false,run=0,poll=false,sim=null,pending=null,buffer='',rows=[],phase='Idle',started=0,selected='',watchdog=null;
 const errors=e=>{try{return typeof e==='object'&&e?JSON.stringify({name:e.name,message:e.message,code:e.code,string:String(e)}):String(e)}catch{return 'Unspecified browser error'}};
